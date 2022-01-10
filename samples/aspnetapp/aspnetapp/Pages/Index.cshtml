@@ -2,6 +2,7 @@
 @using System.Runtime.InteropServices
 @using System.IO
 @using System.Diagnostics
+@using System.Reflection
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -24,6 +25,12 @@
         memoryUsage = GetInBestUnit(long.Parse(usage));
         memoryLimit = GetInBestUnit(long.Parse(limit));
     }
+
+    var executingAsssemblyName = Assembly.GetExecutingAssembly().Location;
+    var file = new FileInfo(executingAsssemblyName??"");
+    var creationTimeUtc= file.CreationTimeUtc;
+
+
 }
 
 <div class="text-center">
@@ -83,6 +90,10 @@
                 }
 
             </td>
+        </tr>
+        <tr>
+            <td>Creation Time UTC</td>
+            <td>@creationTimeUtc</td>
         </tr>
     </table>
 </div>
