@@ -6,7 +6,9 @@ pipeline {
             steps {
               echo 'build docker'
               dir('samples\\aspnetapp') {
+                powershell 'cp c:\\examples\\* aspnetapp\\' 
                 bat 'docker build --pull -t ignaciocolmenares/aspnetapp:nanoserver -f Dockerfile.nanoserver-x64 .'
+                powershell 'git stash' 
               }                
             }
         }
