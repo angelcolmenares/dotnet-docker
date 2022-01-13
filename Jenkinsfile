@@ -19,5 +19,30 @@ pipeline {
                 }
             }
         }
+        stage('pull docker image') {
+            steps{
+                bat 'docker pull ignaciocolmenares/aspnetapp:nanoserver'
+            }
+        }
+        stage('Stop && remove container AspnetApp in stage') {
+            steps {
+                catchError(buildResult: 'SUCCESS'){
+                    bat 'docker stop aspnetapp_ignacio'
+                    bat 'docker rm aspnetapp_ignacio'
+                }
+            }
+        }
+        stage('Start container AspnetApp in stage') {
+            steps {
+                bat 'docker run -d -p 8080:80 --name aspnetapp_ignacio ignaciocolmenares/aspnetapp:nanoserver'
+            }
+        }
+        stage('clean dangling images') {
+            steps {
+                catchError(buildResult: 'SUCCESS'){
+                    powershell  "docker rmi \$(docker images -f \"dangling=true\" -q)"
+                }
+            }
+        }        
     }
 }
