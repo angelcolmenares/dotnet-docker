@@ -40,6 +40,10 @@
 <div align="center">
     <table class="table table-striped table-hover">
         <tr>
+            <td>SOME_KEY From Environment</td>
+            <td>@(Environment.GetEnvironmentVariable("SOME_KEY"))</td>
+        </tr>
+        <tr>
             <td>AppEnvironment</td>
             <td>@Model.AppEnvironment</td>
         </tr>
