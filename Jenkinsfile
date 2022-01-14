@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Start container AspnetApp in stage') {
             steps {
-                bat 'docker run -d -p 8080:80 --name aspnetapp_ignacio ignaciocolmenares/aspnetapp:nanoserver'
+                bat 'docker run -d -p 8080:80 -e SOME_KEY --name aspnetapp_ignacio ignaciocolmenares/aspnetapp:nanoserver'
             }
         }
         stage('clean dangling images') {
