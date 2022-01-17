@@ -36,7 +36,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS'){
                     powershell  'docker image prune -a --filter "until=24h" --force'
-                    powershell  'docker container prune -a --filter "until=24h" --force'
+                    powershell  'docker container prune --filter "until=24h" --force'
                 }
             }
         }        
