@@ -11,3 +11,6 @@ services:
     image: 'ignaciocolmenares/aspnetapp:nanoserver'
     container_name: aspnetapp
     restart: always
+
+#docker compose -f .\compose-nanoserver.yaml  build
+#docker compose -f .\compose-nanoserver.yaml  up -d  --no-build --remove-orphans
