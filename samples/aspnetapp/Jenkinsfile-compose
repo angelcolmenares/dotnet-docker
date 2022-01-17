@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    stages {
+        stage('build docker') {
+            steps {
+              echo 'build docker'
+              dir('samples\\aspnetapp') {
+                powershell 'cp C:\\AspnetAppSettings\\* aspnetapp\\' 
+                bat 'docker compose -f .\compose-nanoserver.yaml  build'
+              }                
+            }
+        }
+        stage('publish docker image') {
+            steps {
+                echo 'publish docker image'
+                withCredentials([string(credentialsId: 'ignacioDockerHubPassword', variable: 'ignacioDockerHubPassword')]) {
+                    bat "docker login -u ignaciocolmenares -p %ignacioDockerHubPassword% "
+                    bat 'docker push ignaciocolmenares/aspnetapp:nanoserver'
+                }
+            }
+        }
+        stage('pull docker image') {
+            steps{
+                bat 'docker pull ignaciocolmenares/aspnetapp:nanoserver'
+            }
+        }
+       
+        stage('Start container AspnetApp in stage') {
+            steps {
+                bat 'compose -f .\compose-nanoserver.yaml up -d --no-build '
+            }
+        }
+        stage('clean  images / container 24h') {
+            steps {
+                catchError(buildResult: 'SUCCESS'){
+                    powershell  'docker image prune -a --filter "until=24h'
+                    powershell  'docker container prune -a --filter "until=24h'
+                }
+            }
+        }        
+    }
+}
