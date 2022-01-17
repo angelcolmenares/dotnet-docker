@@ -27,7 +27,9 @@ pipeline {
        
         stage('Start container AspnetApp in stage') {
             steps {
-                bat 'docker compose -f .\\compose-nanoserver.yaml up -d --no-build '
+                dir('samples\\aspnetapp') {
+                    bat 'docker compose -f .\\compose-nanoserver.yaml up -d --no-build '
+                }
             }
         }
         stage('clean  images / container 24h') {
