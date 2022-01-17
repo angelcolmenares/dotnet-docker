@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  aspnetapp:
+    environment:
+    - SOME_KEY= HOLA MUNDO!
+    build: 
+        context: .
+        dockerfile: Dockerfile.nanoserver-x64
+    ports:
+      - "8080:80"
+    image: 'ignaciocolmenares/aspnetapp:nanoserver'
+    container_name: aspnetapp
+    restart: always
