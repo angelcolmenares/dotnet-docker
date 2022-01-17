@@ -6,7 +6,7 @@ pipeline {
               echo 'build docker'
               dir('samples\\aspnetapp') {
                 powershell 'cp C:\\AspnetAppSettings\\* aspnetapp\\' 
-                bat 'docker compose -f .\compose-nanoserver.yaml  build'
+                bat 'docker compose -f .\\compose-nanoserver.yaml  build'
               }                
             }
         }
@@ -27,7 +27,7 @@ pipeline {
        
         stage('Start container AspnetApp in stage') {
             steps {
-                bat 'compose -f .\compose-nanoserver.yaml up -d --no-build '
+                bat 'compose -f .\\compose-nanoserver.yaml up -d --no-build '
             }
         }
         stage('clean  images / container 24h') {
