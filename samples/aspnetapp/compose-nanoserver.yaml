@@ -2,7 +2,8 @@ version: "3.9"
 services:
   aspnetapp:
     environment:
-    - SOME_KEY= HOLA MUNDO!
+    - SOME_KEY
+    - AppEnvironment
     build: 
         context: .
         dockerfile: Dockerfile.nanoserver-x64
