@@ -10,6 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  imageName: 'dotnet-docker' 
 
 stages:
 - stage: Build
@@ -23,7 +24,10 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
+        repository: $(imageName)
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/eng/common/Dockerfile.WithRepo'
+        Dockerfile: /samples/aspnetapp/Dockerfile
+#       command: build
+#       dockerfile: '$(Build.SourcesDirectory)/eng/common/Dockerfile.WithRepo'
         tags: |
           $(tag)
