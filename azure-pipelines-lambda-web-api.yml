@@ -19,11 +19,11 @@ steps:
     script: |
       # Write your commands here      
       echo 'Hello world'
-      pwd
-      dotnet --info
+      pwd      
       dotnet tool install -g Amazon.Lambda.Tools
+      echo '-----------------------------------------------------'
       dotnet lambda
-
+      echo '-----------------------------------------------------'
     
 #- script: dotnet build --configuration $(buildConfiguration)
 #  displayName: 'dotnet build $(buildConfiguration)'
