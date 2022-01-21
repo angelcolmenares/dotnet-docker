@@ -13,28 +13,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'install -g Amazon.Lambda.Tools'
-  inputs:
-    command: 'custom'
-    custom: 'tool'
-    arguments: 'install -g Amazon.Lambda.Tools'
-
-
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       # Write your commands here      
       echo 'Hello world'
-      dir /usr/bin/
-- task: DotNetCoreCLI@2
-  displayName: 'deploy-serverless'
-  inputs:
-    command: 'custom'
-    custom: 'lambda'
-    arguments: ''
-    workingDirectory: samples\lambdawebapi\src\lambdawebapi
+      pwd
+      dotnet install -g Amazon.Lambda.Tools
+      dotnet lambda
+
     
 #- script: dotnet build --configuration $(buildConfiguration)
 #  displayName: 'dotnet build $(buildConfiguration)'
