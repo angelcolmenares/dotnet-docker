@@ -19,6 +19,15 @@ steps:
     command: 'custom'
     custom: 'tool'
     arguments: 'install -g Amazon.Lambda.Tools'
+
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here      
+      echo 'Hello world'
+      dir /usr/bin/dotnet*
 - task: DotNetCoreCLI@2
   displayName: 'deploy-serverless'
   inputs:
