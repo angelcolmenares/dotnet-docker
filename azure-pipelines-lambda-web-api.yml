@@ -12,19 +12,15 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here      
-      echo 'Hello world'
-      pwd      
-      dotnet tool install -g Amazon.Lambda.Tools
-      echo '-----------------------------------------------------'
-      dotnet lambda
-      echo '-----------------------------------------------------'
-    
-#- script: dotnet build --configuration $(buildConfiguration)
-#  displayName: 'dotnet build $(buildConfiguration)'
-
+stages:
+  - stage: build_stage
+    displayName: "Build"
+    jobs:
+      - job: build_job
+        steps:
+          - task: UseDotNet@2
+            displayName: "Install .NET Core SDK"
+            inputs:
+              version: 6.x
+              performMultiLevelLookup: true
+              includePreviewVersions: false # Required for preview versions
