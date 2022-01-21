@@ -20,7 +20,8 @@ steps:
       # Write your commands here      
       echo 'Hello world'
       pwd
-      dotnet install -g Amazon.Lambda.Tools
+      dotnet --info
+      dotnet tool install -g Amazon.Lambda.Tools
       dotnet lambda
 
     
