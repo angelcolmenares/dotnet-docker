@@ -14,11 +14,13 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'install -g Amazon.Lambda.Tools'
   inputs:
     command: 'custom'
     custom: 'tool'
     arguments: 'install -g Amazon.Lambda.Tools'
 - task: DotNetCoreCLI@2
+  displayName: 'deploy-serverless'
   inputs:
     command: 'custom'
     custom: 'lambda'
