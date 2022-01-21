@@ -35,5 +35,5 @@ stages:
             inputs:
               command: 'custom'
               custom: 'lambda'
-              arguments: ''
+              arguments: 'help deploy-serverless'
             
