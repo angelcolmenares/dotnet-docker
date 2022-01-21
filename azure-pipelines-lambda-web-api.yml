@@ -18,6 +18,13 @@ steps:
     command: 'custom'
     custom: 'tool'
     arguments: 'install -g Amazon.Lambda.Tools'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'lambda'
+    arguments: 'deploy-serverless'
+    workingDirectory: samples\lambdawebapi\src\lambdawebapi
+    
 #- script: dotnet build --configuration $(buildConfiguration)
 #  displayName: 'dotnet build $(buildConfiguration)'
 
