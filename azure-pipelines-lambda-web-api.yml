@@ -30,11 +30,18 @@ stages:
               command: 'custom'
               custom: 'tool'
               arguments: 'install -g Amazon.Lambda.Tools'
-          - task: DotNetCoreCLI@2
-            displayName: "lambda"            
+          
+          - task: Bash@3
+            displayName: "lambda deploy-serverless" 
             inputs:
-              workingDirectory: samples\lambdawebapi\src\lambdawebapi
-              command: 'custom'
-              custom: 'lambda'
-              arguments: 'deploy-serverless'
-            
+              targetType: 'inline'
+              script: |
+                # Write your commands here      
+                echo 'Hello world'
+                pwd
+                echo '-----------------------------------------------------'
+                dotnet lambda help deploy-serverless
+                echo '-----------------------------------------------------'
+                cd samples\lambdawebapi\src\lambdawebapi
+                pwd
+      
