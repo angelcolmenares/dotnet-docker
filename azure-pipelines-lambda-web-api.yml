@@ -27,7 +27,7 @@ steps:
     script: |
       # Write your commands here      
       echo 'Hello world'
-      dir /usr/bin/dotnet*
+      dir /usr/bin/
 - task: DotNetCoreCLI@2
   displayName: 'deploy-serverless'
   inputs:
