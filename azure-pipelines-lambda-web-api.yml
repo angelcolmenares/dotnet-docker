@@ -31,9 +31,10 @@ stages:
               custom: 'tool'
               arguments: 'install -g Amazon.Lambda.Tools'
           - task: DotNetCoreCLI@2
-            displayName: "lambda"
+            displayName: "lambda"            
             inputs:
+              workingDirectory: samples\lambdawebapi\src\lambdawebapi
               command: 'custom'
               custom: 'lambda'
-              arguments: 'help deploy-serverless'
+              arguments: 'deploy-serverless'
             
