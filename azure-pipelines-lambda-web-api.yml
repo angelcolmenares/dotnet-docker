@@ -24,7 +24,7 @@ steps:
   inputs:
     command: 'custom'
     custom: 'lambda'
-    arguments: 'deploy-serverless'
+    arguments: ''
     workingDirectory: samples\lambdawebapi\src\lambdawebapi
     
 #- script: dotnet build --configuration $(buildConfiguration)
