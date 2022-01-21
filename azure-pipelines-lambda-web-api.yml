@@ -24,3 +24,16 @@ stages:
               version: 6.x
               performMultiLevelLookup: true
               includePreviewVersions: false # Required for preview versions
+          - task: DotNetCoreCLI@2
+            displayName: "install -g Amazon.Lambda.Tools"
+            inputs:
+              command: 'custom'
+              custom: 'tool'
+              arguments: 'install -g Amazon.Lambda.Tools'
+          - task: DotNetCoreCLI@2
+            displayName: "lambda"
+            inputs:
+              command: 'custom'
+              custom: 'lambda'
+              arguments: ''
+            
