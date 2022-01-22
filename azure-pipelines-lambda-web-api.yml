@@ -1,0 +1,46 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+  - stage: build_stage
+    displayName: "Build"
+    jobs:
+      - job: build_job
+        steps:
+          - task: UseDotNet@2
+            displayName: "Install .NET Core SDK"
+            inputs:
+              version: 6.x
+              performMultiLevelLookup: true
+              includePreviewVersions: false # Required for preview versions
+          - task: DotNetCoreCLI@2
+            displayName: "install -g Amazon.Lambda.Tools"
+            inputs:
+              command: 'custom'
+              custom: 'tool'
+              arguments: 'install -g Amazon.Lambda.Tools'
+          
+          - task: Bash@3
+            displayName: "lambda deploy-serverless" 
+            inputs:
+              targetType: 'inline'
+              script: |
+                pwd                
+                echo '-----------------------------------------------------'
+                cd samples/lambdawebapi/src/lambdawebapi
+                pwd
+                echo '-----------------------------------------------------'
+                dotnet lambda deploy-serverless  --aws-access-key-id $(AWS_ACCESS_KEY)  --aws-secret-key $(AWS_SECRET_KEY) 
+
+      
