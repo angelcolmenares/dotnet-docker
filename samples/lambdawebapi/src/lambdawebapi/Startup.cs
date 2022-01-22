@@ -50,6 +50,12 @@ namespace lambdawebapi
                 {
                     await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
                 });
+
+                endpoints.MapGet("/env", async context =>
+                {
+                    var someKey = Configuration["SOME_KEY"];
+                    await context.Response.WriteAsync($"some key {someKey}");
+                });
             });
         }
     }
