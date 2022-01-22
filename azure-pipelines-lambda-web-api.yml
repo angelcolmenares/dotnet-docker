@@ -41,6 +41,6 @@ stages:
                 cd samples/lambdawebapi/src/lambdawebapi
                 pwd
                 echo '-----------------------------------------------------'
-                dotnet lambda deploy-serverless  --aws-access-key-id $(AWS_ACCESS_KEY)  --aws-secret-key $(AWS_SECRET_KEY) 
+                dotnet lambda deploy-serverless  --aws-access-key-id $(AWS_ACCESS_KEY)  --aws-secret-key $(AWS_SECRET_KEY) --tp SomeKey=$(SOME_KEY)
 
       
