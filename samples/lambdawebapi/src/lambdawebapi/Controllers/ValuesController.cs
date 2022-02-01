@@ -45,7 +45,8 @@ namespace lambdawebapi.Controllers
         public IActionResult GetIp()
         {
             var ip = HttpContext.Connection.RemoteIpAddress;
-            return Ok(ip);
+            var v4 = ip.MapToIPv4().ToString();
+            return Ok($"{ip.ToString()} - {v4}");
         }
     }
 }
