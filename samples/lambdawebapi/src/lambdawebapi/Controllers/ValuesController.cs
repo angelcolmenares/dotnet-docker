@@ -40,5 +40,12 @@ namespace lambdawebapi.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpGet("ip")]
+        public IActionResult GetIp()
+        {
+            var ip = HttpContext.Connection.RemoteIpAddress;
+            return Ok(ip);
+        }
     }
 }
