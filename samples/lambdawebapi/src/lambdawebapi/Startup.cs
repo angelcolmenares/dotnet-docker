@@ -27,6 +27,7 @@ namespace lambdawebapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient(typeof( System.Collections.Generic.IList<>), typeof(System.Collections.Generic.List<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

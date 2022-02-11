@@ -48,5 +48,13 @@ namespace lambdawebapi.Controllers
             var v4 = ip.MapToIPv4().ToString();
             return Ok($"{ip.ToString()} - {v4}");
         }
+
+        [HttpGet("test-generic")]
+        public IActionResult Test([FromServices] IList<int> list)
+        {
+            list?.Add(1);
+            return Ok( list?.Count);
+
+        }
     }
 }
