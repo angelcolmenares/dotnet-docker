@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace lambdawebapi
 {
+    /*
     /// <summary>
     /// The Main function can be used to run the ASP.NET Core application locally using the Kestrel webserver.
     /// </summary>
@@ -23,4 +24,5 @@ namespace lambdawebapi
                     webBuilder.UseStartup<Startup>();
                 });
     }
+    */
 }

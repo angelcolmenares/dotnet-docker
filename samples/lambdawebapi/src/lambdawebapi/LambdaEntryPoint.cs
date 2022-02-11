@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace lambdawebapi
-{
+{/*
     /// <summary>
     /// This class extends from APIGatewayProxyFunction which contains the method FunctionHandlerAsync which is the 
     /// actual Lambda function entry point. The Lambda handler field should be set to
@@ -48,5 +48,5 @@ namespace lambdawebapi
         protected override void Init(IHostBuilder builder)
         {
         }
-    }
+    }*/
 }
