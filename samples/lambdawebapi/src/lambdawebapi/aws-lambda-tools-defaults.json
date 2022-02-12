@@ -9,9 +9,15 @@
   "region": "us-east-1",
   "configuration": "Release",
   "s3-prefix": "lambdawebapi/",
-  "template": "serverless.template",
-  "template-parameters": "",
+  "no-template": "serverless.template",
+  "no-template-parameters": "",
   "stack-name":"lambdawebapi",
   "s3-bucket":"aospserverless",
-  "docker-host-build-output-dir": "./bin/Release/lambda-publish"
+  "docker-host-build-output-dir": "./bin/Release/lambda-publish",
+  "msbuild-parameters": "--self-contained true",
+  "function-runtime": "provided.al2",
+  "function-memory-size": 256,
+  "function-timeout": 30,
+  "function-handler": "not-used",
+  "function-name": "lambdawebapi"
 }
