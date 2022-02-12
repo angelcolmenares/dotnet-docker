@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace lambdawebapi
+﻿namespace lambdawebapi
 {
     public class Startup
     {
@@ -20,7 +13,7 @@ namespace lambdawebapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-           // services.AddTransient(typeof( System.Collections.Generic.IList<>), typeof(System.Collections.Generic.List<>));
+            services.AddTransient(typeof( System.Collections.Generic.IList<>), typeof(System.Collections.Generic.List<>));
 
             services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
         }
@@ -34,26 +27,22 @@ namespace lambdawebapi
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-            
+            app.MapControllers();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", async context =>
+            app.MapGet(
+                "/",
+                () => "Welcome to running ASP.NET Core on AWS Lambda (minimal api)");
+
+            app.MapGet(
+                "/env",
+                (IConfiguration configuration) =>
                 {
-                    await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
+                    var someKey = configuration["SOME_KEY"];
+                    return $"some key {someKey}";
                 });
 
-                endpoints.MapGet("/env", async context =>
-                {
-                    var someKey = Configuration["SOME_KEY"];
-                    await context.Response.WriteAsync($"some key {someKey}");
-                });
-            });
         }
     }
 }
