@@ -20,7 +20,7 @@ namespace lambdawebapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient(typeof( System.Collections.Generic.IList<>), typeof(System.Collections.Generic.List<>));
+           // services.AddTransient(typeof( System.Collections.Generic.IList<>), typeof(System.Collections.Generic.List<>));
 
             services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
         }
