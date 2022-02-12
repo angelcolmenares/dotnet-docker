@@ -13,11 +13,5 @@
   "template-parameters": "",
   "stack-name":"lambdawebapi",
   "s3-bucket":"aospserverless",
-  "docker-host-build-output-dir": "./bin/Release/lambda-publish",
-  "msbuild-parameters": "--self-contained true",
-  "function-runtime": "provided.al2",
-  "function-memory-size": 256,
-  "function-timeout": 30,
-  "function-handler": "not-used",
-  "function-name": "lambdawebapi"
+  "docker-host-build-output-dir": "./bin/Release/lambda-publish"
 }
